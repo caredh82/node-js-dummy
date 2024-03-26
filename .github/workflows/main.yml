@@ -15,6 +15,9 @@ jobs:
       - name: Install npm
         run: |
           npm ci
+      - name: Lint code
+        run: |
+          npm run lint    
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
@@ -29,8 +32,3 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  Lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code Linting
-        run: npm run lint
