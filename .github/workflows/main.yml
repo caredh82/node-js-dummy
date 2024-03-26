@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
     branches: ["main", "workshop1"]
+  workflow_dispatch:    
 jobs:
   Build:
     runs-on: ubuntu-latest
