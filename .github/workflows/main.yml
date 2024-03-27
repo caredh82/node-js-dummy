@@ -5,6 +5,8 @@ on:
     branches: ["push-event"]
     paths:
       - 'package.json'
+    paths-ignore:
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
