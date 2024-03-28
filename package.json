@@ -4,7 +4,7 @@
   "description": "Simple nodejs dummy app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" test "
+    "test": "echo \"Error: no test specified\" test23 "
   },
   "author": "",
   "license": "ISC",
