@@ -55,5 +55,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Docker image
         run: |
-          docker build --file ./Dockerfile --tag hello-world-nodejs-app:1.0.0
+          docker build --file Dockerfile --tag dummy:latest
     needs: [audit, test]
