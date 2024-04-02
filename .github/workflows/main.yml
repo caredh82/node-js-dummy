@@ -14,11 +14,11 @@ jobs:
         with:
           node-version: '16'
       - name: audit app
-        run: npm audit > ./audit.log || exit 0
+        run: npm audit > ../audit.log || exit 0
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: ./audit.log
+          filePath: ../audit.log
   test:
     runs-on: ubuntu-latest
     steps:
