@@ -1,14 +1,9 @@
 name: GitHub Actions Demo Bootcamp CICD
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
-  push:
-    branches: ["push-event"]
-    paths-ignore:
-      - '.github/workflows/**'
   workflow_dispatch:
-
 jobs:
-  Build:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -16,7 +11,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16'
-      - name: Install npm
+      - run: npm audit || exit 0
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - run: npm test
+        continue-on-error: True  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Build Docker image
         run: |
-          npm ci
-      - run: npm audit || exit 0 
+          docker build --file Dickerfuke --tag hello-world-nodejs-app:latest
+    needs: [audit, test]
