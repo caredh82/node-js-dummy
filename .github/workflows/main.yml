@@ -36,12 +36,25 @@ jobs:
         with:
           name: audit-report
           path: ./audit.log
+    needs: [verify-install]
+  audit-report:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Download audit report
+        uses: actions/download-artifact@v4.1.4
+        with:
+          name: audit-report
       - name: Comment PR
         if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: ./audit.log
-    needs: [verify-install]
+      - name: Print audit report on console
+        run: cat ./audit.log
+    needs: [audit]
   test:
     runs-on: ubuntu-latest
     steps:
