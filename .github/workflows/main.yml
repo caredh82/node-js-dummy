@@ -35,7 +35,7 @@ jobs:
         run: npm audit > ./audit.log || exit 0
       - id: auditapp
         run: |
-          value=$(cat /audit.log)
+          value=$(cat ./audit.log)
           echo "audit-report-$value" >> "$GITHUB_OUTPUT" 
       - name: Save audit report
         uses: actions/upload-artifact@v4.3.1
