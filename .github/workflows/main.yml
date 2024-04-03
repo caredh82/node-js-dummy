@@ -23,6 +23,8 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+    outputs:
+      audit-report-output: ${{ steps.auditapp.outputs.auditoutput }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -31,6 +33,10 @@ jobs:
           node-version: '16'
       - name: audit app
         run: npm audit > ./audit.log || exit 0
+      - id: auditapp
+        run: |
+          value=$(cat /audit.log)
+          echo "audit-report-$value" >> "$GITHUB_OUTPUT" 
       - name: Save audit report
         uses: actions/upload-artifact@v4.3.1
         with:
