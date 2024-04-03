@@ -30,17 +30,17 @@ jobs:
         with:
           node-version: '16'
       - name: audit app
-        run: npm audit > ../audit.log || exit 0
+        run: npm audit > ./audit.log || exit 0
       - name: Save audit report
         uses: actions/upload-artifact@v4.3.1
         with:
           name: audit-report
-          path: ../audit.log
+          path: ./audit.log
       - name: Comment PR
         if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: ../audit.log
+          filePath: ./audit.log
     needs: [verify-install]
   test:
     runs-on: ubuntu-latest
