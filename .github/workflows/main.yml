@@ -35,6 +35,7 @@ jobs:
         run: npm audit > ./audit.log || exit 0
       - id: auditapp
         run: |
+          ls
           value=$(cat ./audit.log)
           echo "audit-report-$value" >> "$GITHUB_OUTPUT" 
       - name: Save audit report
