@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v4  
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.nodeversion }}    
+          node-version: ${{ matrix.nodeversion }}
+          cache: npm    
       - name: verify packages
         run: npm ci
   audit:
